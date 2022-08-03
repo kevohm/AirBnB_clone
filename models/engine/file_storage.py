@@ -2,20 +2,36 @@
 '''
     file storage class
 '''
+import json
+
 class FileStorage:
-    __file_path = 0
+    __file_path = "file.json"
     __objects = {}
+
     def all(self):
+        """Return the dictionary __objects."""
         return FileStorage.__objects
+
     def new(self, obj):
-        FileStorage.__objects[obj.__class__.__name__ + str(obj.id)] = obj
+        """Set in __objects obj with key <obj_class_name>.id"""
+        key = obj.__class__.__name__
+        FileStorage.__objects["{}.{}".format(key, obj.id)] = obj
+
     def save(self):
-        for obj in FileStorage.__objects.values():
-            with open(FileStorage.__file_path) as f:
-                f.write(json.dumps(obj.__dict__));
+        """Serialize __objects to the JSON file __file_path."""
+        main_dict = FileStorage.__objects
+        obj_write = {obj: main_dict[obj].to_dict()  for obj in main_dict.keys()}
+        with open(FileStorage.__file_path, "w") as f:
+            json.dump(obj_write, f)
+
     def reload(self):
+        """Deserialize the JSON file __file_path to __objects, if it exists."""
         try:
-            with open(FileStorage.__file_path, "w+") as f:
-                obj = json.loads(f.read())
+            with open(FileStorage.__file_path) as f:
+                obj_read = json.load(f)
+                for o in obj_read.values():
+                    cls_name = o['__class__']
+                    del o['__class__']
+                    self.new(eval(cls_name)(**o))
         except:
             pass
