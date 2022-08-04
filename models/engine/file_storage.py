@@ -29,9 +29,10 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path) as f:
                 obj_read = json.load(f)
-                for o in obj_read.values():
-                    cls_name = o['__class__']
-                    del o['__class__']
-                    self.new(eval(cls_name)(**o))
+                for v in obj_read.values():
+                    cls_name = v["__class__"]
+                    del v["__class__"]
+                    BaseName =  eval(cls_name)
+                    self.new(BaseName(**v))
         except:
             pass
