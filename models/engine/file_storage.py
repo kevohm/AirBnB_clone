@@ -16,7 +16,7 @@ class FileStorage:
         """Set in __objects obj with key <obj_class_name>.id"""
         key = obj.__class__.__name__
         FileStorage.__objects["{}.{}".format(key, obj.id)] = obj
-
+        
     def save(self):
         """Serialize __objects to the JSON file __file_path."""
         main_dict = FileStorage.__objects
@@ -32,7 +32,7 @@ class FileStorage:
                 for v in obj_read.values():
                     cls_name = v["__class__"]
                     del v["__class__"]
-                    BaseName =  eval(cls_name)
-                    self.new(BaseName(**v))
+                    self.new(eval(cls_name)(**v))
+                print("[object] = {} [__object] ={}".format(eval(cls_name).get(v.id)), FileStorage.__objects)
         except:
-            pass
+            return
