@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-from __init__ import storage
+import __init__
 from base_model import BaseModel
 
-all_objs = storage.all()
+all_objs = __init__.storage.all()
 print("-- Reloaded objects --")
 for obj_id in all_objs.keys():
     obj = all_objs[obj_id]
