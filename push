@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # add to github
 git add .
-if [ $1 -ne "" ]
+if [ [ $1 -ne "" ] ]
 then
 	git commit -m ""
 else
