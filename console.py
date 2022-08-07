@@ -74,10 +74,14 @@ class HBNBCommand(cmd.Cmd):
         if cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
+            obj_list = []
             for key in objdict:
-                print(objdict[key])
+                obj_list.append(objdict[key].__str__())
+            print(obj_list)
     def do_update(self, arg):
-        """update objects"""
+        """Usage: update <class> <id> <attribute_name> <attribute_value>
+        Update a class instance of a given id by adding or updating
+        a given attribute key/value pair or dictionary."""
         cmds = arg.split(' ')
         print(cmds)
         objdict = storage.all()
