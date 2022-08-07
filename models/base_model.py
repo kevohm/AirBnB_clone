@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 '''
-	base class here
+	base class
 '''
-from __init__ import storage
+import __init__
 import uuid
 from datetime import datetime
 
@@ -14,17 +14,16 @@ class BaseModel:
         '''constructor'''
         frmt = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
         if len(kwargs) != 0:
-            for k in kwargs:
-                if k != "__class__":
-                    if k == "created_at" or k == "updated_at":
-                        self.__dict__[k] = datetime.strptime(kwargs.get(k), frmt)
-                    else:
-                        self.__dict__[k] = kwargs.get(k);
+            for k in kwargs.keys():
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = datetime.strptime(kwargs.get(k), frmt)
+                else:
+                    self.__dict__[k] = kwargs.get(k);
         else:
-            storage.new(self)
+            __init__.storage.new(self)
 
     def __str__(self):
         '''representation of subclass of Base'''
@@ -32,8 +31,8 @@ class BaseModel:
 
     def save(self):
         '''save updated object'''
-        updated_at = datetime.now()
-        storage.save()
+        updated_at = datetime.today()
+        __init__.storage.save()
 
     def to_dict(self):
         '''represent as string'''
