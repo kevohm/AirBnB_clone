@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# add to github
+git add .
+git commit -m "done"
+git push
+sleep 3
+clear
