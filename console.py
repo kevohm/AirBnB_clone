@@ -77,7 +77,26 @@ class HBNBCommand(cmd.Cmd):
             for key in objdict:
                 print(objdict[key])
     def do_update(self, arg):
-
+        """update objects"""
+        cmds = arg.split(' ')
+        print(cmds)
+        objdict = storage.all()
+        len_c = len(cmds)
+        if len_c == 0 or cmds[0] == "":
+            print("** class name missing **")
+        elif cmds[0] not in HBNBCommand.__classes:
+            print("** class doesn't exist **")
+        elif len_c == 1:
+            print("** instance id missing **")
+        elif (cmds[0]+ "."+cmds[1]) not in objdict.keys():
+            print("** no instance found **")
+        elif len_c == 2:
+            print("** attribute name missing **")
+        elif len_c == 3:
+            print("** value missing **")
+        else:
+            cls_name = objdict["{}.{}".format(cmds[0], cmds[1])]
+            setattr(cls_name, cmds[2], cmds[3].strip('"'))
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
