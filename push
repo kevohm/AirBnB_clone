@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # add to github
 git add .
-git commit -m "done"
+if [ $1 != "" ]
+then
+	git commit -m ""
+else
+	git commit -m "done"
+fi
 git push
 sleep 3
 clear
