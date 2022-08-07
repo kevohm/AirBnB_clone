@@ -3,7 +3,7 @@
     file storage class
 '''
 import json
-from base_model import BaseModel
+from models.base_model import BaseModel
 
 class FileStorage:
     __file_path = "file.json"

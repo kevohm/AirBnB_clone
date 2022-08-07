@@ -2,7 +2,7 @@
 '''
 	base class
 '''
-import __init__
+import models
 import uuid
 from datetime import datetime
 
@@ -23,16 +23,17 @@ class BaseModel:
                 else:
                     self.__dict__[k] = kwargs.get(k);
         else:
-            __init__.storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         '''representation of subclass of Base'''
-        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
+        cls_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(cls_name, self.id, self.__dict__)
 
     def save(self):
         '''save updated object'''
         updated_at = datetime.today()
-        __init__.storage.save()
+        models.storage.save()
 
     def to_dict(self):
         '''represent as string'''
