@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 '''
-	base class
+    base class
 '''
 import models
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     '''
         BaseModel
-    ''' 
+    '''
     def __init__(self, *args, **kwargs):
         '''constructor'''
         frmt = "%Y-%m-%dT%H:%M:%S.%f"
@@ -21,7 +22,7 @@ class BaseModel:
                 if k == "created_at" or k == "updated_at":
                     self.__dict__[k] = datetime.strptime(kwargs.get(k), frmt)
                 else:
-                    self.__dict__[k] = kwargs.get(k);
+                    self.__dict__[k] = kwargs.get(k)
         else:
             models.storage.new(self)
 

@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
@@ -40,5 +41,5 @@ class FileStorage:
                     cls_name = v["__class__"]
                     del v["__class__"]
                     self.new(eval(cls_name)(**v))
-        except:
+        except FileNotFoundError:
             return

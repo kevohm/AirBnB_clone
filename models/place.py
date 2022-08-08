@@ -4,6 +4,7 @@
 """
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """Represent a place.
     Attributes:
@@ -14,7 +15,7 @@ class Place(BaseModel):
         number_rooms (int): The number of rooms of the place.
         number_bathrooms (int): The number of bathrooms of the place.
         max_guest (int): The maximum number of guests of the place.
-        price_by_night (int): The price by night of the place                                                    
+        price_by_night (int): The price by night of the place
         latitude (float): The latitude of the place.
         longitude (float): The longitude of the place.
         amenity_ids (list): A list of Amenity ids.

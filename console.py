@@ -11,16 +11,27 @@ from models.state import State
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
+
 def parse(arg):
     """parse string to list"""
     return arg.split(" ")
+
 
 class HBNBCommand(cmd.Cmd):
     '''
         HBNBCommand class extends Cmd
     '''
     prompt = "(hbnb) "
-    __classes = ["BaseModel", "User", "City", "State", "Place", "Amenity", "Review"]
+    __classes = [
+            "BaseModel",
+            "User",
+            "City",
+            "State",
+            "Place",
+            "Amenity",
+            "Review"
+            ]
 
     def do_quit(self, arg):
         """ To exit from the console """
@@ -40,8 +51,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             print(eval(cmds[0])().id)
             storage.save()
+
     def do_show(self, arg):
-        '''Prints the string representation of an instance based on class name'''
+        '''Prints the string representation of an instance
+        based on class name'''
         cmds = arg.split(' ')
         objdict = storage.all()
         len_c = len(cmds)
@@ -51,10 +64,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len_c == 1:
             print("** instance id missing **")
-        elif (cmds[0]+ "."+cmds[1]) not in objdict.keys():
+        elif (cmds[0] + "." + cmds[1]) not in objdict.keys():
             print("** no instance found **")
         else:
             print(objdict["{}.{}".format(cmds[0], cmds[1])])
+
     def do_destroy(self, arg):
         """Delete object of model"""
         cmds = arg.split(' ')
@@ -66,11 +80,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len_c == 1:
             print("** instance id missing **")
-        elif (cmds[0]+ "."+cmds[1]) not in objdict.keys():
+        elif (cmds[0] + "." + cmds[1]) not in objdict.keys():
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(cmds[0], cmds[1])]
             storage.save()
+
     def do_all(self, arg):
         """ prints all instances of a class else print all"""
         cmds = parse(arg)
@@ -100,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len_c == 1:
             print("** instance id missing **")
-        elif (cmds[0]+ "."+cmds[1]) not in objdict.keys():
+        elif (cmds[0] + "." + cmds[1]) not in objdict.keys():
             print("** no instance found **")
         elif len_c == 2:
             print("** attribute name missing **")
@@ -111,5 +126,7 @@ class HBNBCommand(cmd.Cmd):
             setattr(cls_name, cmds[2], cmds[3].strip('"'))
             storage.save()
 
+
 if __name__ == '__main__':
+
     HBNBCommand().cmdloop()
