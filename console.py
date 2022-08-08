@@ -5,6 +5,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 def parse(arg):
     """parse string to list"""
@@ -15,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
         HBNBCommand class extends Cmd
     '''
     prompt = "(hbnb) "
-    __classes = ["BaseModel"]
+    __classes = ["BaseModel", "User"]
 
     def do_quit(self, arg):
         """ To exit from the console """
@@ -70,14 +71,14 @@ class HBNBCommand(cmd.Cmd):
         """ prints all instances of a class else print all"""
         cmds = parse(arg)
         objdict = storage.all()
-        if len(cmds) > 0 and cmds[0] not in HBNBCommand.__classes:
+        if len(cmds) == 0:
             print("** class doesn't exist **")
         else:
             obj_list = []
             for obj in objdict.values():
                 if len(cmds) > 0 and cmds[0] == obj.__class__.__name__:
                     obj_list.append(obj.__str__())
-                elif len(argv) == 0:
+                elif cmds[0] == "":
                     obj_list.append(obj.__str__())
             print(obj_list)
 
