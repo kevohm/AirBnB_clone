@@ -15,7 +15,7 @@ from models.review import Review
 
 def parse(arg):
     """parse string to list"""
-    return arg.split(" ")
+    return arg.strip().split(" ")
 
 
 class HBNBCommand(cmd.Cmd):
@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """ create an instance of BaseModel """
-        cmds = arg.split(" ")
+        cmds = parse(arg)
         if len(cmds) == 0:
             print("** class name missing **")
         elif cmds[0] not in HBNBCommand.__classes:
@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         '''Prints the string representation of an instance
         based on class name'''
-        cmds = arg.split(' ')
+        cmds = parse(arg)
         objdict = storage.all()
         len_c = len(cmds)
         if len_c == 0:
@@ -71,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Delete object of model"""
-        cmds = arg.split(' ')
+        cmds = parse(arg)
         objdict = storage.all()
         len_c = len(cmds)
         if len_c == 0:
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: update <class> <id> <attribute_name> <attribute_value>
         Update a class instance of a given id by adding or updating
         a given attribute key/value pair or dictionary."""
-        cmds = arg.split(' ')
+        cmds = parse(arg)
         objdict = storage.all()
         len_c = len(cmds)
         if len_c == 0:
