@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             for obj in objdict.values():
                 if len(cmds) > 0 and cmds[0] == obj.__class__.__name__:
                     obj_list.append(obj.__str__())
-                elif cmds[0] = "":
+                elif cmds[0] == "":
                     obj_list.append(obj.__str__())
             print(obj_list)
 
