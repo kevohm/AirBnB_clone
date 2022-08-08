@@ -92,7 +92,7 @@ class HBNBCommand(cmd.Cmd):
         """ prints all instances of a class else print all"""
         cmds = parse(arg)
         objdict = storage.all()
-        if len(cmds) == 0 or cmds[0] == "":
+        if len(cmds) > 0 and cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
             obj_list = []
