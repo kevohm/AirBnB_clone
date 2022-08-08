@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """ create an instance of BaseModel """
         cmds = arg.split(" ")
-        if len(cmds) == 0 or cmds[0] == "":
+        if len(cmds) == 0:
             print("** class name missing **")
         elif cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -58,7 +58,7 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split(' ')
         objdict = storage.all()
         len_c = len(cmds)
-        if len_c == 0 or cmds[0] == "":
+        if len_c == 0:
             print("** class name missing **")
         elif cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split(' ')
         objdict = storage.all()
         len_c = len(cmds)
-        if len_c == 0 or cmds[0] == "":
+        if len_c == 0:
             print("** class name missing **")
         elif cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split(' ')
         objdict = storage.all()
         len_c = len(cmds)
-        if len_c == 0 or cmds[0] == "":
+        if len_c == 0:
             print("** class name missing **")
         elif cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
@@ -128,4 +128,4 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
 
-    HBNBCommand().cmdloop()
+    HBNBCommand().cmdloop(i)
