@@ -6,7 +6,11 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
-
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 def parse(arg):
     """parse string to list"""
     return arg.split(" ")
@@ -16,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         HBNBCommand class extends Cmd
     '''
     prompt = "(hbnb) "
-    __classes = ["BaseModel", "User"]
+    __classes = ["BaseModel", "User", "City", "State", "Place", "Amenity", "Review"]
 
     def do_quit(self, arg):
         """ To exit from the console """
@@ -78,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
             for obj in objdict.values():
                 if len(cmds) > 0 and cmds[0] == obj.__class__.__name__:
                     obj_list.append(obj.__str__())
-                elif cmds[0] == "":
+                elif len(cmds) == 0 or cmds[0] == "":
                     obj_list.append(obj.__str__())
             print(obj_list)
 
