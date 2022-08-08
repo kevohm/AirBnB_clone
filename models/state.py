@@ -4,5 +4,8 @@
 """
 from models.base_model import BaseModel
 class State:
-    """ inside State class """
+    """Represent a state.
+    Attributes:
+        name (str): The name of the state.
+    """
     name = ""
