@@ -60,11 +60,11 @@ class HBNBCommand(cmd.Cmd):
         cmds = parse(arg)
         objdict = storage.all()
         len_c = len(cmds)
-        if len_c == 0:
+        if len_c == 0 or cmds[0] == "":
             print("** class name missing **")
         elif cmds[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
-        elif len_c == 1:
+        elif len_c == 1 or cmds[1] == "":
             print("** instance id missing **")
         elif (cmds[0] + "." + cmds[1]) not in objdict.keys():
             print("** no instance found **")
