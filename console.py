@@ -106,7 +106,6 @@ class HBNBCommand(cmd.Cmd):
         Update a class instance of a given id by adding or updating
         a given attribute key/value pair or dictionary."""
         cmds = arg.split(' ')
-        print(cmds)
         objdict = storage.all()
         len_c = len(cmds)
         if len_c == 0 or cmds[0] == "":
